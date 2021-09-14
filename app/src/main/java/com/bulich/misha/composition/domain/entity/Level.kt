@@ -1,4 +1,4 @@
-package com.bulich.misha.composition.domain
+package com.bulich.misha.composition.domain.entity
 
 enum class Level {
 
