@@ -30,4 +30,11 @@ class GameFinishedFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    companion object {
+
+        fun newInstance(): GameFinishedFragment {
+            return GameFinishedFragment()
+        }
+    }
 }

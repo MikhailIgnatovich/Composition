@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bulich.misha.composition.R
 import com.bulich.misha.composition.databinding.FragmentChooseLevelBinding
+import com.bulich.misha.composition.domain.entity.Level
 import java.lang.RuntimeException
 
 
@@ -24,6 +25,34 @@ class ChooseLevelFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentChooseLevelBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        with(binding) {
+            buttonLevelTest.setOnClickListener {
+                launchGameFragment(Level.TEST)
+            }
+
+            buttonLevelEasy.setOnClickListener {
+                launchGameFragment(Level.EASY)
+            }
+
+            buttonLevelNormal.setOnClickListener {
+                launchGameFragment(Level.NORMAL)
+            }
+
+            buttonLevelHard.setOnClickListener {
+                launchGameFragment(Level.HARD)
+            }
+        }
+    }
+
+    private fun launchGameFragment(level: Level) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.main_container, GameFragment.newInstance(level))
+            .commit()
     }
 
     override fun onDestroyView() {
