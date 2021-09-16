@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bulich.misha.composition.R
 import com.bulich.misha.composition.databinding.FragmentGameBinding
+import com.bulich.misha.composition.domain.entity.GameResult
 import com.bulich.misha.composition.domain.entity.Level
 import java.lang.RuntimeException
 
@@ -42,8 +43,16 @@ class GameFragment : Fragment() {
         level = requireArguments().getSerializable(KEY_LEVEL) as Level
     }
 
+    private fun launchGameFinishedFragment(gameResult: GameResult){
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.main_container, GameFinishedFragment.newInstance(gameResult))
+            .addToBackStack(null)
+            .commit()
+    }
+
     companion object {
 
+        const val NAME = "GameFragment"
         private const val KEY_LEVEL = "Level"
 
         fun newInstance(level: Level): GameFragment {

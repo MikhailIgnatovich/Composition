@@ -52,6 +52,7 @@ class ChooseLevelFragment : Fragment() {
     private fun launchGameFragment(level: Level) {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.main_container, GameFragment.newInstance(level))
+            .addToBackStack(GameFragment.NAME)
             .commit()
     }
 
@@ -61,6 +62,9 @@ class ChooseLevelFragment : Fragment() {
     }
 
     companion object {
+
+        const val NAME = "ChooseLevelFragment"
+
         fun newInstance(): ChooseLevelFragment {
             return ChooseLevelFragment()
         }
